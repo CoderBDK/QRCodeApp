@@ -4,6 +4,7 @@ import com.coderbdk.qrgenerator.model.ECCLevel
 import com.coderbdk.qrgenerator.model.ECCLevelSpecs
 import com.coderbdk.qrgenerator.model.QRMode
 import com.coderbdk.qrgenerator.model.QRVersionSpecs
+import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -37,5 +38,21 @@ class DataEncoderTest {
         val actual = encoder.encode(data, version = 1, mode = QRMode.ALPHANUMERIC, specs = eccLevelSpecs)
 
         assertEquals(true, actual.startsWith(expectedStart))
+    }
+
+    @Test
+    fun testConvertToCodewords() {
+        // 1. A sample bitstream (16 bits = 2 codewords)
+        // First 8 bits: 01001010 (Decimal: 74)
+        // Second 8 bits: 11110000 (Decimal: 240)
+        val bitStream = "0100101011110000"
+
+        // 2. Expected output array
+        val expected = intArrayOf(74, 240)
+
+        // 3. Function call and result verification
+        val actual = encoder.convertToCodewords(bitStream)
+
+        assertArrayEquals("Bitstream conversion to codewords failed!", expected, actual)
     }
 }

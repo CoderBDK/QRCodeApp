@@ -26,6 +26,22 @@ class DataEncoder {
         return finalizeBitStream(bitStream.toString(), totalDataBits)
     }
 
+    /**
+     * Converts a finalized bitstream string into an array of 8-bit codewords (integers).
+     * Each 8-bit segment represents one data codeword for Reed-Solomon encoding.
+     */
+    fun convertToCodewords(bitStream: String): IntArray {
+        val numCodewords = bitStream.length / 8
+        val codewords = IntArray(numCodewords)
+
+        for (i in 0 until numCodewords) {
+            val byteString = bitStream.substring(i * 8, (i + 1) * 8)
+            // binary string to base-10 integer
+            codewords[i] = byteString.toInt(2)
+        }
+        return codewords
+    }
+
     private fun isValidNumeric(input: String): Boolean = input.all { it in '0'..'9' }
 
     /**
