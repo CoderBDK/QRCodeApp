@@ -20,4 +20,7 @@ data class ECCLevelSpecs(
     val errorCorrectionCodewords: Int,
     val maxNumericCapacity: Int,
     val maxAlphanumericCapacity: Int,
-)
+){
+    val eccCodewordsPerBlock: Int
+        get() = errorCorrectionCodewords
+}
