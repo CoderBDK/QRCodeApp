@@ -8,29 +8,30 @@ package com.coderbdk.qrgenerator.model
  * reduced data capacity.
  *
  * @see <a href="https://www.qrcode.com/en/about/error_correction.html">QR Code Error Correction</a>
+ * @see <a href="https://www.thonky.com/qr-code-tutorial/format-version-information#the-error-correction-bits">The Error Correction Bits</a>
  */
-enum class ECCLevel {
+enum class ECCLevel(val indicator: Int) {
     /**
      * Level L: Recovers up to 7% of data.
      * Offers the highest storage capacity.
      */
-    L,
+    L(0b01),
 
     /**
      * Level M: Recovers up to 15% of data.
      * The default choice for most QR codes.
      */
-    M,
+    M(0b00),
 
     /**
      * Level Q: Recovers up to 25% of data.
      * Used in environments with significant risk of damage.
      */
-    Q,
+    Q(0b11),
 
     /**
      * Level H: Recovers up to 30% of data.
      * Provides maximum recovery but the lowest storage capacity.
      */
-    H
+    H(0b10)
 }
