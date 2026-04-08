@@ -5,7 +5,7 @@ import com.coderbdk.qrgenerator.utils.QRUtils
 /**
  * Object responsible for applying QR code mask patterns to the data modules.
  * Masking is performed to avoid patterns in the matrix that are difficult for scanners to read.
- * Logic based on: https://www.thonky.com/qr-code-tutorial/mask-patterns
+ * @see <a href="https://www.thonky.com/qr-code-tutorial/mask-patterns">Thonky's QR Code Mask Patterns Detail</a>
  */
 object MaskApplier {
 
